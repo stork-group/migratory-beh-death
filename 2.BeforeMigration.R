@@ -4,8 +4,8 @@
 # ------------------------------------------------------------------------------
 
 # --- 1. Set up the R session --------------------------------------------------
-source("Scripts_to_publish/0.setup.R")
-source("Scripts_to_publish/0.functions.R")
+source("0.setup.R")
+source("0.functions.R")
 
 # --- 2. Data upload -----------------------------------------------------------
 all_data <- fread("Data/storks_behaviour.csv")
