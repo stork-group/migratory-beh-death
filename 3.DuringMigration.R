@@ -10,8 +10,12 @@ source("0.functions.R")
 # --- 2. Data upload -----------------------------------------------------------
 all_data <- fread("Data/storks_behaviour.csv")
 
-mig_dates <- read_xlsx("Data/migration_dates_v02.xlsx") |>
-  mutate(across(matches("start|end"), as.Date))
+mig_dates <- read_xlsx("Data/migration_dates_v03.xlsx") |>
+  mutate(across(matches("^(start|end)_"),
+                ~ {
+                  if (is.character(.x)) as.Date(as.numeric(.x), origin = "1899-12-30") else as.Date(.x)
+                }))
+mig_dates <- filter(mig_dates, focal == "yes")
 
 
 # --- 3. Migration phenology ---------------------------------------------------
